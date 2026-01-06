@@ -131,9 +131,14 @@ namespace WPFBlackJack
             // WANNEER SELECT STOP KNOP GEDRUKT DAN STOP EN TOON WINNAAR 
         }
 
-        private void DealCartTo(Card card)
+        private void DealCardTo(Card card)
         {
-            
+            // DEAL DECK OF CARDS TO BANK & PLAYER
+        }
+
+        private void CountValueFromStack()
+        {
+            //
         }
     }
 }

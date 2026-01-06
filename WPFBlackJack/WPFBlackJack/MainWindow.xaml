@@ -52,6 +52,7 @@
             <TextBlock Grid.Row="1" Grid.Column="1" Text="Place your bet:" Margin="78,65,447,104" Foreground="White"/>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="78,103,447,67"/>
 
+            
             <Button Grid.Row="1" Grid.Column="1" Margin="78,148,447,10" Content="Play"
                 Background="#FF008A00" Foreground="White"
                 BorderThickness="2" BorderBrush="#FF00B900"
@@ -60,18 +61,47 @@
             <Button Grid.Row="1" Grid.Column="1" Margin="243,148,280,10" Content="Card"
                 Background="#FF008A00" Foreground="White"
                 BorderThickness="2" BorderBrush="#FF00B900"
-                Click="SelectedCardButton"/>
-
+                Click="SelectedCardButton"
+                Visibility="Collapsed"/>
+            
             <Button Grid.Row="1" Grid.Column="1" Margin="354,148,167,10" Content="Stop"
                 Background="#FF8A0000" Foreground="White"
                 BorderThickness="2" BorderBrush="#FFB90000"
-                Click="SelectedStopButton"/>
+                Click="SelectedStopButton"
+                Visibility="Collapsed"/>
 
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="0" Margin="597,14,0,152" Foreground="White" RenderTransformOrigin="4.576,-1.006" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Width="17">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.169"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="0" Margin="599,172,0,103" Foreground="White" RenderTransformOrigin="4.576,-1.006" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Grid.RowSpan="2" Width="15"/>
+            
+            <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="197" Margin="15,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="599" Grid.RowSpan="2" Fill="#7F65001D" Visibility="Visible"/>
+
+            <Button Grid.Row="1" Grid.Column="1" Margin="35,148,486,10" Content="End"
+                Background="#FF8A0000" Foreground="White"
+                BorderThickness="2" BorderBrush="#FFB90000"
+                Click="SelectedEndButton"
+                Visibility="Visible"/>
+
+
+            <Button Grid.Row="1" Grid.Column="1" Margin="483,148,37,10" Content="Next"
+                Background="#FF008A00" Foreground="White"
+                BorderThickness="2" BorderBrush="#FF00B900"
+                Click="SelectedNextButton"
+                Visibility="Visible"/>
+            
             <Image Grid.Row="1" Grid.Column="1" Source="/images/cards/back.png" Margin="270, 25, 200, 75"/>
             <GroupBox Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" Header="Player" Foreground="White">
                 <StackPanel Orientation="Horizontal" x:Name="playerStack" Margin="5,0,5,0" Height="74"/>
             </GroupBox>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="338,65,258,111" Foreground="White" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.857,0.544"><Run Language="nl-nl" Text="51"/></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="343,61,0,97" Foreground="White" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.857,0.544" Text="0" HorizontalAlignment="Left"></TextBlock>
         </Grid>
     </DockPanel>
 </Window>
