@@ -12,31 +12,30 @@
     <DockPanel>
         <Grid Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="104*"/>
+                <RowDefinition Height="14*"/>
+                <RowDefinition Height="177*"/>                <RowDefinition Height="118*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-            <GroupBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Header="Game" Foreground="White" ></GroupBox>
-            <Button Grid.Row="0" Grid.Column="0" Margin="20,30,20,59" Content="New Game" Background="#FF008A00" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FF00B900"/>
-            <Separator Grid.Row="0"  Margin="0,103,0,0" HorizontalAlignment="Center" Width="154" Height="15" Background="#FFD8D8D8"/>
-            <Separator Grid.Row="0" Margin="0,57,0,46" HorizontalAlignment="Center" Width="154" Height="15" Background="#FFD8D8D8"/>
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,69,30,27" FontSize="10" Foreground="White"><Run Text="Credits"/></TextBlock>
-            <TextBlock Grid.Row="0" Margin="30,84,0,14" Text="500" HorizontalAlignment="Left" Width="116" TextAlignment="Right" Foreground="White"/>
+            <GroupBox Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Header="Game" Foreground="White" ></GroupBox>
+            <Button Grid.Row="0" Grid.Column="0" Margin="20,30,20,45" Content="New Game" Background="#FF008A00" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FF00B900" Click="StartNewGame"/>
+            <Separator Grid.Row="0"  Margin="0,103,0,0" HorizontalAlignment="Center" Width="154" Height="15" Background="#FFD8D8D8" Grid.RowSpan="2"/>
+            <Separator Grid.Row="0" Margin="0,57,0,32" HorizontalAlignment="Center" Width="154" Height="15" Background="#FFD8D8D8"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,69,30,13" FontSize="10" Foreground="White"><Run Text="Credits"/></TextBlock>
+            <TextBlock Grid.Row="0" Margin="30,84,0,0" Text="500" HorizontalAlignment="Left" Width="116" TextAlignment="Right" Foreground="White"/>
 
-            <GroupBox Grid.Row="0" Grid.Column="1" Margin="15,0,0,0" Header="Bank" Foreground="White" />
+            <GroupBox Grid.Row="0" Grid.Column="1" Margin="15,0,0,0" Header="Bank" Foreground="White" Grid.RowSpan="2" />
 
-            <Button Grid.Row="1" Grid.Column="1" Margin="243,130,280,10" Content="Card" Background="#FF008A00" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FF00B900"/>
-            <Button Grid.Row="1" Grid.Column="1" Margin="354,130,167,10" Content="Stop" Background="#FF8A0000" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FFB90000"/>
-            <Button Grid.Row="1" Grid.Column="1" Margin="78,130,447,10" Content="Play" Background="#FF008A00" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FF00B900"/>
-            <Image></Image>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="78,93,447,53"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Place your bet:" Margin="78,65,447,85" Foreground="White"/>
+            <Button Grid.Row="2" Grid.Column="1" Margin="243,130,280,10" Content="Card" Background="#FF008A00" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FF00B900"/>
+            <Button Grid.Row="2" Grid.Column="1" Margin="354,130,167,10" Content="Stop" Background="#FF8A0000" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FFB90000"/>
+            <Button Grid.Row="2" Grid.Column="1" Margin="78,130,447,10" Content="Play" Background="#FF008A00" Foreground="White" BorderThickness="2,2,2,2" BorderBrush="#FF00B900" Click="StartNewGame"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="78,93,447,53"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Place your bet:" Margin="78,65,447,85" Foreground="White"/>
 
-            <GroupBox Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" Header="Player" Foreground="White" />
+            <GroupBox Grid.Row="3" Grid.Column="1" Margin="15,0,0,0" Header="Player" Foreground="White" />
 
 
         </Grid>

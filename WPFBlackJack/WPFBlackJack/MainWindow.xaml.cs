@@ -23,6 +23,19 @@ namespace WPFBlackJack
 
         }
 
+        private void StartNewGame(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
+        private void RefreshUI(object sender, RoutedEventArgs e)
+        {
+            //CLEAR GEBRUIKEN
+        }
+
+        private Card[] _deck = new Card[]
+        {
+
+        }
     }
 }
