@@ -25,7 +25,8 @@ namespace WPFBlackJack
 
         private void StartNewGame(object sender, RoutedEventArgs e)
         {
-            
+            // START GAME
+            // 2 KAARTEN OPEN DICHT (VOOR BANK EN SPELER)
         }
 
         private void RefreshUI(object sender, RoutedEventArgs e)
@@ -33,9 +34,14 @@ namespace WPFBlackJack
             //CLEAR GEBRUIKEN
         }
 
-        private Card[] _deck = new Card[]
+        private void SelectedCardButton(object sender, RoutedEventArgs e)
         {
+            // WANNEER SELECT CARD KNOP GEDRUK DAN GEEF KAART
+        }
 
+        private void SelectedStopButton(object sender, RoutedEventArgs e)
+        {
+            // WANNEER SELECT STOP KNOP GEDRUKT DAN STOP EN TOON WINNAAR 
         }
     }
 }
