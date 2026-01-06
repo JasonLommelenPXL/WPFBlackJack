@@ -6,5 +6,6 @@ namespace WPFBlackJack
 {
     internal class Deck
     {
+        public List<Card> Cards { get; set; }
     }
 }

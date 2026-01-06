@@ -16,11 +16,98 @@ namespace WPFBlackJack
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Card[] _deck = new Card[]
+        {
+            // CLUBS
+            new Card { ImageUrl="/images/cards/clubs_A.png", Value=new[] {1,11}},
+            new Card { ImageUrl="/images/cards/clubs_2.png", Value=new[] {2}},
+            new Card { ImageUrl="/images/cards/clubs_3.png", Value=new[] {3}},
+            new Card { ImageUrl="/images/cards/clubs_4.png", Value=new[] {4}},
+            new Card { ImageUrl="/images/cards/clubs_5.png", Value=new[] {5}},
+            new Card { ImageUrl="/images/cards/clubs_6.png", Value=new[] {6}},
+            new Card { ImageUrl="/images/cards/clubs_7.png", Value=new[] {7}},
+            new Card { ImageUrl="/images/cards/clubs_8.png", Value=new[] {8}},
+            new Card { ImageUrl="/images/cards/clubs_9.png", Value=new[] {9}},
+            new Card { ImageUrl="/images/cards/clubs_10.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/clubs_J.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/clubs_Q.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/clubs_K.png", Value=new[] {10}},
+
+            // DIAMONDS
+            new Card { ImageUrl="/images/cards/diamonds_A.png", Value=new[] {1,11}},
+            new Card { ImageUrl="/images/cards/diamonds_2.png", Value=new[] {2}},
+            new Card { ImageUrl="/images/cards/diamonds_3.png", Value=new[] {3}},
+            new Card { ImageUrl="/images/cards/diamonds_4.png", Value=new[] {4}},
+            new Card { ImageUrl="/images/cards/diamonds_5.png", Value=new[] {5}},
+            new Card { ImageUrl="/images/cards/diamonds_6.png", Value=new[] {6}},
+            new Card { ImageUrl="/images/cards/diamonds_7.png", Value=new[] {7}},
+            new Card { ImageUrl="/images/cards/diamonds_8.png", Value=new[] {8}},
+            new Card { ImageUrl="/images/cards/diamonds_9.png", Value=new[] {9}},
+            new Card { ImageUrl="/images/cards/diamonds_10.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/diamonds_J.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/diamonds_Q.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/diamonds_K.png", Value=new[] {10}},
+
+            // HEARTS
+            new Card { ImageUrl="/images/cards/hearts_A.png", Value=new[] {1,11}},
+            new Card { ImageUrl="/images/cards/hearts_2.png", Value=new[] {2}},
+            new Card { ImageUrl="/images/cards/hearts_3.png", Value=new[] {3}},
+            new Card { ImageUrl="/images/cards/hearts_4.png", Value=new[] {4}},
+            new Card { ImageUrl="/images/cards/hearts_5.png", Value=new[] {5}},
+            new Card { ImageUrl="/images/cards/hearts_6.png", Value=new[] {6}},
+            new Card { ImageUrl="/images/cards/hearts_7.png", Value=new[] {7}},
+            new Card { ImageUrl="/images/cards/hearts_8.png", Value=new[] {8}},
+            new Card { ImageUrl="/images/cards/hearts_9.png", Value=new[] {9}},
+            new Card { ImageUrl="/images/cards/hearts_10.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/hearts_J.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/hearts_Q.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/hearts_K.png", Value=new[] {10}},
+
+            // SPADES
+            new Card { ImageUrl="/images/cards/spades_A.png", Value=new[] {1,11}},
+            new Card { ImageUrl="/images/cards/spades_2.png", Value=new[] {2}},
+            new Card { ImageUrl="/images/cards/spades_3.png", Value=new[] {3}},
+            new Card { ImageUrl="/images/cards/spades_4.png", Value=new[] {4}},
+            new Card { ImageUrl="/images/cards/spades_5.png", Value=new[] {5}},
+            new Card { ImageUrl="/images/cards/spades_6.png", Value=new[] {6}},
+            new Card { ImageUrl="/images/cards/spades_7.png", Value=new[] {7}},
+            new Card { ImageUrl="/images/cards/spades_8.png", Value=new[] {8}},
+            new Card { ImageUrl="/images/cards/spades_9.png", Value=new[] {9}},
+            new Card { ImageUrl="/images/cards/spades_10.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/spades_J.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/spades_Q.png", Value=new[] {10}},
+            new Card { ImageUrl="/images/cards/spades_K.png", Value=new[] {10}},
+        };
+
         public MainWindow()
         {
             InitializeComponent();
 
 
+        }
+
+        /// <summary>
+        /// Adds an image control to a panel which displays the given card
+        /// </summary>
+        /// <param name="panel">The control to which the image must be added</param>
+        /// <param name="card">The card that should be displayed in the image</param>
+        /// <param name="isVisible">A boolean that indicates if the card should be open or not</param>
+        private void AddImageToStackPanel(StackPanel panel, Card card, bool isVisible)
+        {
+            card.IsVisible = isVisible;
+
+            //Maak een nieuwe Image control
+            Image image = new Image();
+            image.Width = 120;
+            image.Height = 170;
+            image.Stretch = Stretch.Uniform;
+            image.Margin = new Thickness(5, 0, 5, 0);
+            //Bewaar het volledige Card-object in de Tag-property van de Image control
+            image.Tag = card;
+            image.Source = new BitmapImage(new Uri(card.ImageUrl, UriKind.Relative));
+
+            //Voeg de Image control toe aan het StackPanel
+            panel.Children.Add(image);
         }
 
         private void StartNewGame(object sender, RoutedEventArgs e)
@@ -42,6 +129,11 @@ namespace WPFBlackJack
         private void SelectedStopButton(object sender, RoutedEventArgs e)
         {
             // WANNEER SELECT STOP KNOP GEDRUKT DAN STOP EN TOON WINNAAR 
+        }
+
+        private void DealCartTo(Card card)
+        {
+            
         }
     }
 }
