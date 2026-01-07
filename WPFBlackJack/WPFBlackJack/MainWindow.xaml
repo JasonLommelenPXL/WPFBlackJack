@@ -5,103 +5,252 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFBlackJack"
         mc:Ignorable="d"
-        Title="♥ ♦ ♠ ♣ Blackjack ♥ ♦ ♠ ♣" Height="450" Width="800">
+        Title="♥ ♦ ♠ ♣ Blackjack ♥ ♦ ♠ ♣"
+        Height="800"
+        Width="1200"
+        ResizeMode="NoResize"
+        FontSize="18"
+        TextElement.Foreground="White">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Control}">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </Window.Resources>
+
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\jason\downloads\blackjack-background.png" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="C:\Users\jason\downloads\blackjack-background.png"
+                    Stretch="Fill"/>
     </Window.Background>
 
-    <DockPanel>
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid Margin="10">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="Transparent" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Row="0"
+                  Grid.RowSpan="3"
+                  Grid.Column="0"
+                  Header="Game"
+                  Margin="10">
+            <StackPanel>
+                <Button x:Name="btnNewGame"
+                        Content="New Game"
+                        Margin="0,10,0,10"
+                        Padding="10,5"
+                        Background="#FF008A00"
+                        BorderBrush="#FF00B900"
+                        BorderThickness="2"
+                        Click="StartNewGame"/>
+
+                <Separator Margin="0,0,0,10"/>
+
+                <TextBlock Text="Credits:" Margin="0,0,0,5"/>
+                <TextBlock x:Name="creditsTextBlock"
+                           Text="500"
+                           FontSize="36"
+                           FontWeight="Bold"
+                           TextAlignment="Right"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="0"
+                  Grid.Column="1"
+                  Header="Bank"
+                  Margin="10"
+                  Height="220">
+            <StackPanel Orientation="Horizontal"
+                        x:Name="bankStack"
+                        Margin="5"
+                        Height="170"
+                        ClipToBounds="True"/>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2"
+                  Grid.Column="1"
+                  Header="Player"
+                  Margin="10"
+                  Height="220">
+            <StackPanel Orientation="Horizontal"
+                        x:Name="playerStack"
+                        Margin="5"
+                        Height="170"
+                        ClipToBounds="True"/>
+        </GroupBox>
+
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Margin="10">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <GroupBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Header="Game" Foreground="White">
-                <StackPanel Margin="10">
-                    <Button Content="New Game"
-                        Margin="10,20,10,10"
+            <StackPanel x:Name="playerBetPanel"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Visibility="Collapsed"
+                        Margin="10">
+                <TextBlock Text="Place your bet:" Margin="0,0,0,10"/>
+
+                <TextBox x:Name="betTextBox"
+                         Width="180"
+                         Height="30"
+                         Margin="0,0,0,10"/>
+
+                <Button x:Name="playButton"
+                        Content="Play"
+                        Width="180"
+                        Padding="10,5"
                         Background="#FF008A00"
-                        Foreground="White"
-                        BorderThickness="2"
                         BorderBrush="#FF00B900"
-                        Click="StartNewGame"/>
+                        BorderThickness="2"
+                        Click="playGame"/>
+            </StackPanel>
 
-                    <Separator Margin="10,0,10,10" Background="#FFD8D8D8"/>
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="10">
+                <Grid>
+                    <Image x:Name="deckImage"
+                           Source="/images/cards/back.png"
+                           Width="120"
+                           Height="170"
+                           Stretch="Uniform"/>
 
-                    <TextBlock Text="Credits" FontSize="10" Margin="10,0,10,5" Foreground="White"/>
+                    <TextBlock x:Name="remainingCardsTextBlock"
+                               Text="52"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Grid>
 
-                    <TextBlock x:Name="creditsTextBlock"
-                           Text="500"
-                           Margin="10,0,10,0"
-                           TextAlignment="Right"
-                           Foreground="White"/>
+                <StackPanel x:Name="actionsGrid"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,0"
+                            Visibility="Collapsed">
+                    <Button x:Name="cardButton"
+                            Content="Card"
+                            Width="120"
+                            Padding="10,5"
+                            Background="#FF008A00"
+                            BorderBrush="#FF00B900"
+                            BorderThickness="2"
+                            Click="SelectedCardButton"/>
+
+                    <Border Width="10"/>
+
+                    <Button x:Name="stopButton"
+                            Content="Stop"
+                            Width="120"
+                            Padding="10,5"
+                            Background="#FF8A0000"
+                            BorderBrush="#FFB90000"
+                            BorderThickness="2"
+                            Click="SelectedStopButton"/>
                 </StackPanel>
-            </GroupBox>
+            </StackPanel>
 
-            <GroupBox Grid.Row="0" Grid.Column="1" Margin="15,0,0,0" Header="Bank" Foreground="White">
-                <StackPanel Orientation="Horizontal" x:Name="bankStack" Margin="5,0,5,0" Height="68"/>
-            </GroupBox>
+            <Grid Grid.Column="2" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Place your bet:" Margin="78,65,447,104" Foreground="White"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="78,103,447,67"/>
+                <TextBlock x:Name="bankPointsTextBlock"
+                           Grid.Row="0"
+                           Text="0"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,10,0"/>
 
-            
-            <Button Grid.Row="1" Grid.Column="1" Margin="78,148,447,10" Content="Play"
-                Background="#FF008A00" Foreground="White"
-                BorderThickness="2" BorderBrush="#FF00B900"
-                Click="StartNewGame"/>
+                <TextBlock x:Name="playerPointsTextBlock"
+                           Grid.Row="2"
+                           Text="0"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Right"
+                           Margin="0,0,10,0"/>
+            </Grid>
 
-            <Button Grid.Row="1" Grid.Column="1" Margin="243,148,280,10" Content="Card"
-                Background="#FF008A00" Foreground="White"
-                BorderThickness="2" BorderBrush="#FF00B900"
-                Click="SelectedCardButton"
-                Visibility="Collapsed"/>
-            
-            <Button Grid.Row="1" Grid.Column="1" Margin="354,148,167,10" Content="Stop"
-                Background="#FF8A0000" Foreground="White"
-                BorderThickness="2" BorderBrush="#FFB90000"
-                Click="SelectedStopButton"
-                Visibility="Collapsed"/>
+            <Grid x:Name="resultGrid"
+                  Grid.ColumnSpan="3"
+                  Background="#AA65001D"
+                  Visibility="Collapsed">
 
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="0" Margin="597,14,0,152" Foreground="White" RenderTransformOrigin="4.576,-1.006" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Width="17">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.169"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="0" Margin="599,172,0,103" Foreground="White" RenderTransformOrigin="4.576,-1.006" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Grid.RowSpan="2" Width="15"/>
-            
-            <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="197" Margin="15,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="599" Grid.RowSpan="2" Fill="#7F65001D" Visibility="Visible"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Grid.Column="1" Margin="35,148,486,10" Content="End"
-                Background="#FF8A0000" Foreground="White"
-                BorderThickness="2" BorderBrush="#FFB90000"
-                Click="SelectedEndButton"
-                Visibility="Visible"/>
+                <TextBlock x:Name="resultTextBlock"
+                           Grid.Row="0"
+                           Text="You lost!!!"
+                           FontSize="44"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
 
+                <Grid Grid.Row="1" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="1" Grid.Column="1" Margin="483,148,37,10" Content="Next"
-                Background="#FF008A00" Foreground="White"
-                BorderThickness="2" BorderBrush="#FF00B900"
-                Click="SelectedNextButton"
-                Visibility="Visible"/>
-            
-            <Image Grid.Row="1" Grid.Column="1" Source="/images/cards/back.png" Margin="270, 25, 200, 75"/>
-            <GroupBox Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" Header="Player" Foreground="White">
-                <StackPanel Orientation="Horizontal" x:Name="playerStack" Margin="5,0,5,0" Height="74"/>
-            </GroupBox>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="343,61,0,97" Foreground="White" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.857,0.544" Text="0" HorizontalAlignment="Left"></TextBlock>
+                    <Button x:Name="endButton"
+                            Grid.Column="0"
+                            Content="End"
+                            Width="120"
+                            Padding="10,5"
+                            Background="#FF8A0000"
+                            BorderBrush="#FFB90000"
+                            BorderThickness="2"
+                            Click="SelectedEndButton"/>
+
+                    <Button x:Name="nextButton"
+                            Grid.Column="2"
+                            Content="Next"
+                            Width="120"
+                            Padding="10,5"
+                            Background="#FF008A00"
+                            BorderBrush="#FF00B900"
+                            BorderThickness="2"
+                            Click="SelectedNextButton"/>
+                </Grid>
+            </Grid>
+
         </Grid>
-    </DockPanel>
+    </Grid>
 </Window>
