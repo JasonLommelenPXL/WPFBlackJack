@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace WPFBlackJack
 {
@@ -140,8 +141,8 @@ namespace WPFBlackJack
                 }
                 else
                 {
-                    Card hiddenCard = new Card();
-                    hiddenCard.ImageUrl = "images/cards/back.png";
+                    Card hiddenCard = new Card(); // toon (verborgen kaart)
+                    hiddenCard.ImageUrl = "images/cards/back.png"; // door de url back.png te tonen.
                     hiddenCard.IsVisible = false;
 
                     AddImageToStackPanel(playerStack, hiddenCard, false);
@@ -232,7 +233,62 @@ namespace WPFBlackJack
 
         private void CountValueFromStack()
         {
+            List<Card> _deck = CreateCardList();
 
+            // Als speler of bank nieuwe kaart raapt met de card button (x:Name cardButton) dan doe card - 1 en toon dit op TextBlock (x:Name: remainingCardsTextBlock)
+            int playerTotal = 0; // Spelers totaal
+            int playerAces = 0; // Aantal aces van de speler
+
+            for (int i = 0; i < playerStack.Children.Count; i++) // Voor (een geheel getal i = 0; zolang i kleiner is dan het aantal children in playerStack; verhoog i telkens met 1)
+            {
+                Image image = (Image)playerStack.Children[i]; // Kijkt naar het aantal images in de player stack.
+                Card card = (Card)image.Tag; // Kijkt naar het aantal kaarten 
+
+                if (card.IsVisible == false) continue; // kijkt of de card de waarde visible heeft want standaard in de lijst zo is.
+
+                if (card.Value.Length == 2) // de kaart heeft 2 mogelijke waarden
+                {
+                    playerTotal += 1; // playertotaal + 1 = 1
+                    playerAces++; // 
+                }
+                else
+                {
+                    playerTotal += card.Value[0];
+                }
+                while (playerAces > 0 && playerTotal + 10 <= 21)
+                {
+                    playerTotal += 10;
+                    playerAces--;
+                }
+                bankPointsTextBlock.Text = playerTotal.ToString();
+            }
+
+            int bankTotal = 0; // Bank totaal
+            int bankAces = 0; // Aantal aces van de bank
+
+            for (int i = 0; i < bankStack.Children.Count; i++) // Voor (een geheel getal i = 0; zolang i kleiner is dan het aantal children in bankStack; verhoog i telkens met 1)
+            {
+                Image image = (Image)bankStack.Children[i];
+                Card card = (Card)image.Tag;
+
+                if (card.IsVisible == false) continue;
+
+                if (card.Value.Length == 2) // Aces telt voor 2
+                {
+                    bankTotal += 1;
+                    bankAces++;
+                }
+                else
+                {
+                    bankTotal += card.Value[0];
+                }
+                while (bankAces > 0 && bankTotal + 10 <= 21)
+                {
+                    bankTotal += 10;
+                    bankAces--;
+                }
+                bankPointsTextBlock.Text = bankTotal.ToString();
+            }
         }
 
         private void SelectedEndButton(object sender, RoutedEventArgs e)
@@ -249,15 +305,17 @@ namespace WPFBlackJack
         {
             creditsTextBlock.Text = _credits.ToString(); // textblock 500 wordt credits 500 waarde aan gegeven.
 
-            int.TryParse(betTextBox.Text?.ToString(), out int playerBet);
-            if (playerBet > _credits)
+            int.TryParse(betTextBox.Text?.ToString(), out int playerBet); // converteert bettextbox text naar een int. 
+            if (playerBet > _credits) // als bet groter is dan credits
             {
-                MessageBox.Show("Not possible, your bet is higher than your value.");
+                MessageBox.Show("Not possible, your bet is higher than your value."); // niet mogelijk, uw bet is hoger dan uw waarde
                 return;
             }
 
-            _credits -= playerBet;
-            creditsTextBlock.Text = _credits.ToString();
+            _credits -= playerBet; // indien wel mogelijk doe credits text box - bet
+            creditsTextBlock.Text = _credits.ToString(); // nieuwe waarde.
+
+
         }
     }
 }
